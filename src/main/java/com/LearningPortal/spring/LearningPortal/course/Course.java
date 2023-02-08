@@ -1,26 +1,38 @@
 package com.LearningPortal.spring.LearningPortal.course;
 
+import com.LearningPortal.spring.LearningPortal.user.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+//import jakarta.persistence.Column;
+//import jakarta.persistence.Entity;
+//import jakarta.persistence.Id;
+//import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import javax.persistence.*;
 
+@Entity
+@Table(name="courses")
 public class Course {
 	
-	@NotBlank
-	@JsonProperty("courseId")
+	@Id
+	@Column(name="CourseId")
+	@JsonProperty("id")
 	private int courseId;
 	
-	@NotBlank
-	@JsonProperty("courseName")
+	@Column(name="CourseName")
+	@JsonProperty("name")
 	private String courseName;
 	
-	@NotBlank
-	@JsonProperty("courseDuration")
+	@Column(name="CourseDuration")
+	@JsonProperty("duration")
 	private float courseDuration;
 	
-	@NotBlank
+	@Column(name="InstructorId")
 	@JsonProperty("instructorId")
 	private int instructorId;
+	
+	@JsonProperty("instructor")
+	private User instructor;
 
 	public Course(@NotBlank int courseId) {
 		super();
@@ -79,6 +91,14 @@ public class Course {
 
 	public void setInstructorId(int instructorId) {
 		this.instructorId = instructorId;
+	}
+
+	public User getInstructor() {
+		return instructor;
+	}
+
+	public void setInstructor(User instructor) {
+		this.instructor = instructor;
 	}
 
 }
