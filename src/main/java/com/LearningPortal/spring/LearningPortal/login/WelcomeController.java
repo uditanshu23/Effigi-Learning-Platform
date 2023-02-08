@@ -4,17 +4,17 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @SessionAttributes("username")
 public class WelcomeController {
 
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String gotoWelcomePage(ModelMap model) {
 		model.put("name", getLoggedinUsername());
-		return "welcome";
+		return "login";
 	}
 	
 	private String getLoggedinUsername() {
