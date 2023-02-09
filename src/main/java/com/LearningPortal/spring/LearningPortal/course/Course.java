@@ -1,10 +1,12 @@
 package com.LearningPortal.spring.LearningPortal.course;
 
 import com.LearningPortal.spring.LearningPortal.user.User;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,18 +15,26 @@ public class Course {
 
 	@Id
 	@Column(name = "CourseId")
+	@JsonProperty("id")
 	private int courseId;
 
 	@Column(name = "CourseName")
+	@JsonProperty("name")
 	private String courseName;
 
 	@Column(name = "CourseDuration")
+	@JsonProperty("duration")
 	private float courseDuration;
 
 	@Column(name = "InstructorId")
+	@JsonProperty("instructorId")
 	private int instructorId;
 
+	@OneToOne
+	@JsonProperty("instructor")
 	private User instructor;
+	
+	public Course() {}
 
 	public Course(int courseId, String courseName, float courseDuration, int instructorId) {
 		super();

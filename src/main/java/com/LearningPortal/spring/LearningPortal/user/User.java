@@ -1,10 +1,18 @@
 package com.LearningPortal.spring.LearningPortal.user;
 
 import java.sql.Date;
+import java.util.List;
+
+import com.LearningPortal.spring.LearningPortal.course.Course;
+import com.LearningPortal.spring.LearningPortal.course.SubscribedCourse;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
@@ -14,72 +22,70 @@ public class User {
 
 	@Id
 	@Column(name = "UserId")
-//	@JsonProperty("id")
-	private long id;
+	@JsonProperty("id")
+	private long userId;
 
 	@Column(name = "UserName")
-//	@JsonProperty("name")
-	private String username;
+	@JsonProperty("name")
+	private String userName;
 
 	@Column(name = "UserEmail")
-//	@JsonProperty("email")
+	@JsonProperty("email")
 	private String email;
 
-	@Column(name = "CourseId")
-//	@JsonProperty("courseId")
-	private long courseId;
-
 	@Column(name = "BirthDate")
-//	@JsonProperty("birthDate")
+	@JsonProperty("birthDate")
 	private Date birthDate;
 
 	@Column(name = "PhoneNo")
-//	@JsonProperty("phoneNumber")
+	@JsonProperty("phoneNumber")
 	private long phoneNo;
 
 	@Column(name = "UserRole")
-//	@JsonProperty("role")
+	@JsonProperty("role")
 	private String userRole;
 
 	@Column(name = "UserType")
-//	@JsonProperty("type")
+	@JsonProperty("type")
 	private String userType;
 	
-//	@JsonProperty("favorites")
-//	private List<Course> favoriteCourses;
-//	
-//	@JsonProperty("subscriptions")
-//	private List<SubscribedCourse> subscribedCourses;
+	@OneToMany
+	@JsonProperty("favorites")
+	private List<Course> favoriteCourses;
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name="UserId")
+	@JsonProperty("subscriptions")
+	private List<SubscribedCourse> subscribedCourses;
 
 	public User() {}
 
-	public User(long id, String username, String email, long courseId, Date birthDate, long phoneNo, String userRole,
+	public User(long userId, String userName, String email, Date birthDate, long phoneNo, String userRole,
 			String userType) {
 		super();
-		this.id = id;
-		this.username = username;
+		this.userId = userId;
+		this.userName = userName;
 		this.email = email;
-		this.courseId = courseId;
 		this.birthDate = birthDate;
 		this.phoneNo = phoneNo;
 		this.userRole = userRole;
 		this.userType = userType;
 	}
 
-	public long getId() {
-		return id;
+	public long getUserId() {
+		return userId;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setId(long userId) {
+		this.userId = userId;
 	}
 
 	public String getUsername() {
-		return username;
+		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUsername(String userName) {
+		this.userName = userName;
 	}
 
 	public String getEmail() {
@@ -88,14 +94,6 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public long getCourseId() {
-		return courseId;
-	}
-
-	public void setCourseId(long courseId) {
-		this.courseId = courseId;
 	}
 
 	public Date getBirthDate() {
@@ -130,19 +128,19 @@ public class User {
 		this.userType = userType;
 	}
 
-//	public List<Course> getFavoriteCourses() {
-//		return favoriteCourses;
-//	}
-//
-//	public void setFavoriteCourses(List<Course> favoriteCourses) {
-//		this.favoriteCourses = favoriteCourses;
-//	}
+	public List<Course> getFavoriteCourses() {
+		return favoriteCourses;
+	}
 
-//	public List<SubscribedCourse> getSubscribedCourses() {
-//		return subscribedCourses;
-//	}
-//
-//	public void setSubscribedCourses(List<SubscribedCourse> subscribedCourses) {
-//		this.subscribedCourses = subscribedCourses;
-//	}
+	public void setFavoriteCourses(List<Course> favoriteCourses) {
+		this.favoriteCourses = favoriteCourses;
+	}
+
+	public List<SubscribedCourse> getSubscribedCourses() {
+		return subscribedCourses;
+	}
+
+	public void setSubscribedCourses(List<SubscribedCourse> subscribedCourses) {
+		this.subscribedCourses = subscribedCourses;
+	}
 }
