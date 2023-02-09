@@ -2,8 +2,8 @@ package com.LearningPortal.spring.LearningPortal.login;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -19,12 +19,12 @@ public class LoginController {
 
 	}
 
-	@RequestMapping(value = "learn", method = RequestMethod.GET)
+	@GetMapping("learn")
 	public String gotoLoginPage() {
 		return "login";
 	}
 
-	@RequestMapping(value = "learn", method = RequestMethod.POST)
+	@PostMapping("learn")
 	public String gotoWelcomePage(@RequestParam String name, @RequestParam String password, ModelMap model) {
 
 		if (authenticationService.authenticate(name, password)) {
