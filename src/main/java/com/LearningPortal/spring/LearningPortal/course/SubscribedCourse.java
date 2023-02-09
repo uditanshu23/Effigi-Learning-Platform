@@ -13,6 +13,13 @@ public class SubscribedCourse {
 	@JsonProperty("id")
 	private long subscriptionId;
 	
+
+	@Column(name="UserId")
+	private long userId;
+	
+	@Column(name="CourseId", insertable = true, updatable = true)
+	private long courseId;
+	
 	@Column(name="CompletionPercentage")
 	@JsonProperty("completionPercentage")
 	private int completionPercentage;
@@ -22,7 +29,7 @@ public class SubscribedCourse {
 	private char currentGrade;
 	
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="CourseId")
+	@JoinColumn(name="CourseId", insertable = false, updatable = false)
 	@JsonProperty("course")
 	private Course course;
 
@@ -32,6 +39,16 @@ public class SubscribedCourse {
 			char currentGrade) {
 		super();
 		this.subscriptionId = subscriptionId;
+		this.completionPercentage = completionPercentage;
+		this.currentGrade = currentGrade;
+	}
+
+	public SubscribedCourse(long subscriptionId, long userId, long courseId, int completionPercentage,
+			char currentGrade) {
+		super();
+		this.subscriptionId = subscriptionId;
+		this.userId = userId;
+		this.courseId = courseId;
 		this.completionPercentage = completionPercentage;
 		this.currentGrade = currentGrade;
 	}

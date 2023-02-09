@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -26,11 +28,12 @@ public class Course {
 	@JsonProperty("duration")
 	private float courseDuration;
 
-	@Column(name = "InstructorId")
-	@JsonProperty("instructorId")
-	private int instructorId;
+//	@Column(name = "InstructorId")
+//	@JsonProperty("instructorId")
+//	private int instructorId;
 
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="InstructorId")
 	@JsonProperty("instructor")
 	private User instructor;
 	
@@ -41,7 +44,7 @@ public class Course {
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.courseDuration = courseDuration;
-		this.instructorId = instructorId;
+//		this.instructorId = instructorId;
 	}
 
 	public int getCourseId() {
@@ -68,19 +71,21 @@ public class Course {
 		this.courseDuration = courseDuration;
 	}
 
-	public int getInstructorId() {
-		return instructorId;
-	}
-
-	public void setInstructorId(int instructorId) {
-		this.instructorId = instructorId;
-	}
+//	public int getInstructorId() {
+//		return instructorId;
+//	}
+//
+//	public void setInstructorId(int instructorId) {
+//		this.instructorId = instructorId;
+//	}
 
 	public User getInstructor() {
+//		return instructor.getBasicUser();
 		return instructor;
 	}
 
 	public void setInstructor(User instructor) {
+//		this.instructor = instructor.getBasicUser();
 		this.instructor = instructor;
 	}
 
