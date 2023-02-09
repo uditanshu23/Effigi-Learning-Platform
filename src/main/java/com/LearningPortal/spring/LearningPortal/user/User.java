@@ -1,17 +1,12 @@
 package com.LearningPortal.spring.LearningPortal.user;
 
 import java.sql.Date;
-//import java.util.List;
 
-//import com.LearningPortal.spring.LearningPortal.course.Course;
-//import com.LearningPortal.spring.LearningPortal.course.SubscribedCourse;
-//import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-//import jakarta.persistence.Column;
-//import jakarta.persistence.Entity;
-//import jakarta.persistence.Id;
-//import jakarta.persistence.Table;
-import javax.persistence.*;
 
 @Entity
 @Table(name = "users")

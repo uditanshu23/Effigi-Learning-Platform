@@ -8,7 +8,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	User findById(long userId);
 	
-	List<User> findByRole(String role);
+	List<User> findByUserRole(String role);
 	
 	User createUser(User user);
 }
