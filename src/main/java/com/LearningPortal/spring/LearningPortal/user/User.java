@@ -3,7 +3,7 @@ package com.LearningPortal.spring.LearningPortal.user;
 import java.sql.Date;
 import java.util.List;
 
-import com.LearningPortal.spring.LearningPortal.course.Course;
+import com.LearningPortal.spring.LearningPortal.course.FavouriteCourse;
 import com.LearningPortal.spring.LearningPortal.course.SubscribedCourse;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -49,9 +49,10 @@ public class User {
 	@JsonProperty("type")
 	private String userType;
 	
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
+	@JoinColumn(name="UserId")
 	@JsonProperty("favorites")
-	private List<Course> favoriteCourses;
+	private List<FavouriteCourse> favoriteCourses;
 	
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name="UserId")
@@ -128,11 +129,11 @@ public class User {
 		this.userType = userType;
 	}
 
-	public List<Course> getFavoriteCourses() {
+	public List<FavouriteCourse> getFavoriteCourses() {
 		return favoriteCourses;
 	}
 
-	public void setFavoriteCourses(List<Course> favoriteCourses) {
+	public void setFavoriteCourses(List<FavouriteCourse> favoriteCourses) {
 		this.favoriteCourses = favoriteCourses;
 	}
 
@@ -143,4 +144,12 @@ public class User {
 	public void setSubscribedCourses(List<SubscribedCourse> subscribedCourses) {
 		this.subscribedCourses = subscribedCourses;
 	}
+	
+//	public User getBasicUser() {
+//		User tempUser = new User(userId, userName, email, birthDate, phoneNo, userRole,
+//			userType);
+//		tempUser.setFavoriteCourses(null);
+//		tempUser.setSubscribedCourses(null);
+//		return tempUser;
+//	}
 }
