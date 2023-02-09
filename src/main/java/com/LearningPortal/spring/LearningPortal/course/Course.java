@@ -1,59 +1,32 @@
 package com.LearningPortal.spring.LearningPortal.course;
 
 import com.LearningPortal.spring.LearningPortal.user.User;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-//import jakarta.persistence.Column;
-//import jakarta.persistence.Entity;
-//import jakarta.persistence.Id;
-//import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-import javax.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
-@Table(name="courses")
+@Table(name = "courses")
 public class Course {
-	
+
 	@Id
-	@Column(name="CourseId")
-	@JsonProperty("id")
+	@Column(name = "CourseId")
 	private int courseId;
-	
-	@Column(name="CourseName")
-	@JsonProperty("name")
+
+	@Column(name = "CourseName")
 	private String courseName;
-	
-	@Column(name="CourseDuration")
-	@JsonProperty("duration")
+
+	@Column(name = "CourseDuration")
 	private float courseDuration;
-	
-	@Column(name="InstructorId")
-	@JsonProperty("instructorId")
+
+	@Column(name = "InstructorId")
 	private int instructorId;
-	
-	@JsonProperty("instructor")
+
 	private User instructor;
 
-	public Course(@NotBlank int courseId) {
-		super();
-		this.courseId = courseId;
-	}
-
-	public Course(@NotBlank int courseId, @NotBlank String courseName) {
-		super();
-		this.courseId = courseId;
-		this.courseName = courseName;
-	}
-
-	public Course(@NotBlank int courseId, @NotBlank String courseName, @NotBlank float courseDuration) {
-		super();
-		this.courseId = courseId;
-		this.courseName = courseName;
-		this.courseDuration = courseDuration;
-	}
-
-	public Course(@NotBlank int courseId, @NotBlank String courseName, @NotBlank float courseDuration,
-			@NotBlank int instructorId) {
+	public Course(int courseId, String courseName, float courseDuration, int instructorId) {
 		super();
 		this.courseId = courseId;
 		this.courseName = courseName;

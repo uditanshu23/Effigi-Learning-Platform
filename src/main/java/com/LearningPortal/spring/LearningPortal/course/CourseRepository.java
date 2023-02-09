@@ -1,10 +1,9 @@
 package com.LearningPortal.spring.LearningPortal.course;
 
-public class CourseRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
 
-	public Course findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+public interface CourseRepository extends JpaRepository<Course, Long> {
+//	
+//	Course findById(long courseId);
 
 }
