@@ -22,7 +22,7 @@ public class MockedData {
 	public static Course getMockedCourse(boolean newCourse) throws ParseException {
 		Course course1 = new Course(4L, "SpringBoot", (float) 17.5, getInstructor());
 		
-		Course course2 = new Course(5L, "FastAPI", (float) 13.0, getInstructor());
+		Course course2 = new Course(6L, "Flask", (float) 18.4, getInstructor());
 		
 		if (!newCourse) {
 			return course1;
@@ -35,7 +35,7 @@ public class MockedData {
 		FavouriteCourse favouriteCourse1 = new FavouriteCourse(0, 3, 4);
 		favouriteCourse1.setCourse(getMockedCourse(false));
 		
-		FavouriteCourse favouriteCourse2 = new FavouriteCourse(3, 3, 5);
+		FavouriteCourse favouriteCourse2 = new FavouriteCourse(3, 3, 6);
 		favouriteCourse2.setCourse(getMockedCourse(true));
 		
 		if (!newFavourite) {
@@ -49,7 +49,7 @@ public class MockedData {
 		SubscribedCourse subscribedCourse1 = new SubscribedCourse(1, 3, 4, 19, 'C');
 		subscribedCourse1.setCourse(getMockedCourse(false));
 		
-		SubscribedCourse subscribedCourse2 = new SubscribedCourse(5, 3, 5, 19, 'C');
+		SubscribedCourse subscribedCourse2 = new SubscribedCourse(5, 3, 6, 19, 'C');
 		subscribedCourse2.setCourse(getMockedCourse(true));
 		
 		if (!newSubscription) {
