@@ -18,7 +18,7 @@ public class Course {
 	@Id
 	@Column(name = "CourseId")
 	@JsonProperty("id")
-	private int courseId;
+	private long courseId;
 
 	@Column(name = "CourseName")
 	@JsonProperty("name")
@@ -39,19 +39,19 @@ public class Course {
 	
 	public Course() {}
 
-	public Course(int courseId, String courseName, float courseDuration, int instructorId) {
+	public Course(long courseId, String courseName, float courseDuration, User instructor) {
 		super();
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.courseDuration = courseDuration;
-//		this.instructorId = instructorId;
+		this.instructor = instructor;
 	}
 
-	public int getCourseId() {
+	public long getCourseId() {
 		return courseId;
 	}
 
-	public void setCourseId(int courseId) {
+	public void setCourseId(long courseId) {
 		this.courseId = courseId;
 	}
 

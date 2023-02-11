@@ -73,6 +73,22 @@ public class SubscribedCourse {
 		return currentGrade;
 	}
 
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	public long getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(long courseId) {
+		this.courseId = courseId;
+	}
+
 	public void setCurrentGrade(char currentGrade) {
 		this.currentGrade = currentGrade;
 	}

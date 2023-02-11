@@ -3,10 +3,14 @@ package com.LearningPortal.spring.LearningPortal.user;
 import java.sql.Date;
 import java.util.List;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.LearningPortal.spring.LearningPortal.course.FavouriteCourse;
 import com.LearningPortal.spring.LearningPortal.course.SubscribedCourse;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -44,25 +48,22 @@ public class User {
 	@Column(name = "UserRole")
 	@JsonProperty("role")
 	private String userRole;
-
-	@Column(name = "UserType")
-	@JsonProperty("type")
-	private String userType;
 	
 	@OneToMany(fetch=FetchType.EAGER)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name="UserId")
 	@JsonProperty("favorites")
 	private List<FavouriteCourse> favoriteCourses;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name="UserId")
 	@JsonProperty("subscriptions")
 	private List<SubscribedCourse> subscribedCourses;
 
 	public User() {}
 
-	public User(long userId, String userName, String email, Date birthDate, long phoneNo, String userRole,
-			String userType) {
+	public User(long userId, String userName, String email, Date birthDate, long phoneNo, String userRole) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
@@ -70,7 +71,6 @@ public class User {
 		this.birthDate = birthDate;
 		this.phoneNo = phoneNo;
 		this.userRole = userRole;
-		this.userType = userType;
 	}
 
 	public long getUserId() {
@@ -119,14 +119,6 @@ public class User {
 
 	public void setUserRole(String userRole) {
 		this.userRole = userRole;
-	}
-
-	public String getUserType() {
-		return userType;
-	}
-
-	public void setUserType(String userType) {
-		this.userType = userType;
 	}
 
 	public List<FavouriteCourse> getFavoriteCourses() {
