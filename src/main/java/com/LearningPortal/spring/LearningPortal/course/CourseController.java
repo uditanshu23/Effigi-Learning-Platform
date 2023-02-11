@@ -39,9 +39,12 @@ public class CourseController {
 	}
 
 	@GetMapping("/{courseId}")
-	public ResponseEntity<Course> getCourseById(@PathVariable int courseId) {
-		Course course = courseRepository.findById(courseId);
-		return new ResponseEntity<>(course, HttpStatus.OK);
+	public ResponseEntity<Course> getCourseById(@PathVariable long l) {
+		Optional<Course> course = courseRepository.findById(l);
+		if (course.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(course.get(), HttpStatus.OK);
 	}
 
 	@PutMapping("/addCourse/{courseName}/{courseDuration}/{userId}")
@@ -59,7 +62,7 @@ public class CourseController {
 		Course course = new Course(courseRepository.count() + 1, courseName, courseDuration, instructor);
 		courseRepository.save(course);
 
-		return new ResponseEntity<>(course, HttpStatus.CREATED);
+		return new ResponseEntity<>(course, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/deleteCourse/{courseId}")

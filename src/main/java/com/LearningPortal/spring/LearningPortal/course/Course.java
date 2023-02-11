@@ -28,12 +28,12 @@ public class Course {
 	@JsonProperty("duration")
 	private float courseDuration;
 
-//	@Column(name = "InstructorId")
-//	@JsonProperty("instructorId")
-//	private int instructorId;
+	@Column(name = "InstructorId", insertable = true, updatable = true)
+	@JsonProperty("instructorId")
+	private long instructorId;
 
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="InstructorId")
+	@JoinColumn(name="InstructorId", insertable = false, updatable = false)
 	@JsonProperty("instructor")
 	private User instructor;
 	
@@ -44,6 +44,7 @@ public class Course {
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.courseDuration = courseDuration;
+		this.instructorId = instructor.getUserId();
 		this.instructor = instructor;
 	}
 
@@ -71,13 +72,13 @@ public class Course {
 		this.courseDuration = courseDuration;
 	}
 
-//	public int getInstructorId() {
-//		return instructorId;
-//	}
-//
-//	public void setInstructorId(int instructorId) {
-//		this.instructorId = instructorId;
-//	}
+	public long getInstructorId() {
+		return instructorId;
+	}
+
+	public void setInstructorId(int instructorId) {
+		this.instructorId = instructorId;
+	}
 
 	public User getInstructor() {
 //		return instructor.getBasicUser();
